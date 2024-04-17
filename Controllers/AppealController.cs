@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Appeals.Models;
+﻿using AppealsProject.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Appeals.Controllers
+namespace AppealsProject.Controllers
 {
     public class AppealController : Controller
     {

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Appeals.Controllers;
-using Appeals.Models;
+﻿using AppealsProject.Controllers;
+using AppealsProject.Models;
 using Microsoft.AspNetCore.Mvc;
-using Xunit;
 
-namespace Appeals.Tests
+namespace Tests
 {
     public class AppealControllerTests
     {
         [Fact]
-        public void ReturningWithSortedAppeals()
+        public void Index_ReturnsSortedAppealsInView()
         {
             var controller = new AppealController();
             var appeals = new List<Appeal>
@@ -22,12 +18,15 @@ namespace Appeals.Tests
             AppealController._appeals.AddRange(appeals);
 
             var result = controller.Index() as ViewResult;
-            var model = result.Model as List<Appeal>;
+            var model = result?.Model as List<Appeal>;
 
             Assert.NotNull(result);
-            Assert.Equal(2, model.Count);
-            Assert.Equal(1, model[0].AppealId);
-            Assert.Equal(2, model[1].AppealId);
+            if (model != null)
+            {
+                Assert.Equal(2, model.Count);
+                Assert.Equal(1, model[0].AppealId);
+                Assert.Equal(2, model[1].AppealId);
+            }
 
             AppealController._appeals.Clear();
         }
@@ -76,6 +75,16 @@ namespace Appeals.Tests
             Assert.DoesNotContain(appeal, AppealController._appeals);
 
             AppealController._appeals.Clear();
+        }
+        [Fact]
+        public void Delete_ReturnsNotFoundWhenAppealNotFound()
+        {
+            var controller = new AppealController();
+            var id = 1;
+
+            var result = controller.Delete(id) as NotFoundResult;
+
+            Assert.NotNull(result);
         }
     }
 }

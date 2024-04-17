@@ -1,22 +1,25 @@
-﻿@model Appeals.Models.Appeal
+﻿@model AppealsProject.Models.Appeal
 
-<h1>Koosta pöördumine.</h1>
-
-<form asp-action="Create">
-    <div class="form-group">
-        <label asp-for="AppealName">Pöördumise nimi:</label>
-        <input asp-for="AppealName" class="form-control" required />
-        <span asp-validation-for="AppealName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AppealDescription">Pöördumise kirjeldus:</label>
-        <input asp-for="AppealDescription" class="form-control" required />
-        <span asp-validation-for="AppealDescription" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DueDateTime">Tähtaeg:</label>
-        <input asp-for="DueDateTime" type="datetime-local" class="form-control" required/>
-        <span asp-validation-for="DueDateTime" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Sisesta</button>
-</form>
+<div class="container mt-5">
+    <form asp-action="Create" class="col-lg-6 offset-lg-3">
+        <h1 class="text-center">Koosta pöördumine.</h1>
+        <div class="form-group">
+            <label asp-for="AppealName">Pöördumise nimi:</label>
+            <input asp-for="AppealName" class="form-control" required />
+            <span asp-validation-for="AppealName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AppealDescription">Pöördumise kirjeldus:</label>
+            <textarea asp-for="AppealDescription" rows="5" class="form-control" required></textarea>
+            <span asp-validation-for="AppealDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DueDateTime">Tähtaeg:</label>
+            <input asp-for="DueDateTime" type="datetime-local" class="form-control" required />
+            <span asp-validation-for="DueDateTime" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Sisesta</button>
+        </div>
+    </form>
+</div>

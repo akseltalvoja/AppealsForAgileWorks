@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Appeals.Models
+namespace AppealsProject.Models
 {
     public class Appeal
     {
@@ -31,7 +31,7 @@ namespace Appeals.Models
 
         public Appeal()
         {
-            var newId = System.Threading.Interlocked.Increment(ref _lastAssignedId);
+            var newId = Interlocked.Increment(ref _lastAssignedId);
 
             AppealId = newId;
 

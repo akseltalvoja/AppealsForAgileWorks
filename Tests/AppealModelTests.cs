@@ -1,13 +1,11 @@
-using System;
-using Appeals.Models;
-using Xunit;
+using AppealsProject.Models;
 
-namespace Appeals.Tests
+namespace Tests
 {
-    public class AppealTests
+    public class AppealModelTests
     {
         [Fact]
-        public void Appeal_Constructor_SetsPropertiesCorrectly()
+        public void Appeal_SetsPropertiesCorrectly()
         {
             var appeal = new Appeal
             {
@@ -23,7 +21,7 @@ namespace Appeals.Tests
         }
 
         [Fact]
-        public void Appeal_Constructor_AssignsIncrementalAppealId()
+        public void Appeal_AssignsIncrementalAppealId()
         {
             var initialLastAssignedId = Appeal.GetLastAssignedId();
             Appeal.ResetLastAssignedId();
