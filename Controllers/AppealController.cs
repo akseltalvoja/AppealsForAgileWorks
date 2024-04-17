@@ -5,7 +5,13 @@ namespace AppealsProject.Controllers
 {
     public class AppealController : Controller
     {
-        public static List<Appeal> _appeals = new List<Appeal>();
+        public static List<Appeal> _appeals = new List<Appeal>
+        {
+            new Appeal { AppealId = 1, AppealName = "Näidis pöördumine 2", AppealDescription = "Ei ole punane, kuna aega on rohkem kui üks tund", DueDateTime = DateTime.Now.AddDays(7) },
+            new Appeal { AppealId = 2, AppealName = "Näidis Pöördumine 1", AppealDescription = "On punane, kuna aega on vähem kui üks tund", DueDateTime = DateTime.Now.AddDays(-1) }
+        };
+
+
 
         public IActionResult Index()
         {
@@ -37,7 +43,8 @@ namespace AppealsProject.Controllers
             {
                 return NotFound();
             }
-            _appeals.Remove(appeal);
+
+            _appeals.RemoveAll(a => a.AppealId == id);
             return RedirectToAction("Index");
         }
     }
