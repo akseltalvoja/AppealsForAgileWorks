@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Veebirakendus, mis võimaldab hallata kasutajatoele saadetud pöördumisi.</h1>
+    <p>Aksel Talvoja</p>
+    <div>
+        <a href="@Url.Action("Create", "Appeal")" class="btn btn-primary">Lisa pöördumine</a>
+        <a href="@Url.Action("Index", "Appeal")" class="btn btn-secondary">Kõik pöördumised</a>
+    </div>
+</div>

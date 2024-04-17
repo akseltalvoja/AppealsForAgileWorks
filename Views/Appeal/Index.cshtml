@@ -1,0 +1,46 @@
+﻿@model List<Appeals.Models.Appeal>
+
+<h1>Kõik pöördumised</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Kirjeldus</th>
+            <th>Tähtaeg</th>
+            <th>Sisestamise aeg</th>
+            <th>Lahendatud</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appeal in Model)
+        {
+            <tr class="@GetRowColor(appeal.DueDateTime)">
+
+                <td>@appeal.AppealName</td>
+                <td style="max-width: 300px; word-wrap: break-word;">@appeal.AppealDescription</td>
+                <td>@appeal.DueDateTime.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@appeal.AddedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <form method="post" asp-action="Delete" asp-route-id="@appeal.AppealId">
+                        <button type="submit" class="btn btn-success">✓</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@functions {
+    public string GetRowColor(DateTime dueDate)
+    {
+        TimeSpan timeDifference = dueDate - DateTime.Now;
+
+        if (timeDifference.TotalHours <= 1)
+        {
+            return "table-danger";
+        }
+
+        return "";
+    }
+}
